@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/head"></div>
+
+<body>
+    <div th:replace="fragments/navigation"></div>
+    <div th:replace="fragments/modals"></div>
+
+    <main>
+        <div class="container">
+            <h1 class="text-end my-3">Welcome to your dashboard.</h1>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12 col-md-8 col-lg-8">
+                    <div th:if="${not #lists.isEmpty(courses)}">
+                        <h2 class="text-left my-2">Here is a list of courses.</h2>
+                        <table class="table table-hover datatable">
+                            <thead>
+                                <tr>
+                                    <th>Course title</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="course: ${courses}"
+                                    th:attr="data-course-title='${course.getTitle()}'">
+                                    <td th:text="${course.getTitle()}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div th:unless="${not #lists.isEmpty(courses)}">
+                        <div class="m-2 text-start">
+                            <h2>No courses</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <div th:replace="fragments/scripts"></div>
+    <div th:replace="fragments/footer"></div>
+</body>
+
+</html>
