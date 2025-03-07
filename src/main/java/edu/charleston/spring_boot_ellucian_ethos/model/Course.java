@@ -5,6 +5,10 @@ package edu.charleston.spring_boot_ellucian_ethos.model;
  */
 public class Course {
 
+    public enum CourseLevelCodes {
+        GRAD, UNDERGRAD
+    }
+
     private String crn;
     private String courseIdCode;
     private String courseIdNumber;
