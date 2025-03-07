@@ -1,26 +1,15 @@
 package edu.charleston.spring_boot_ellucian_ethos.services;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import edu.charleston.spring_boot_ellucian_ethos.model.Department;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
-class Departments {
+import org.springframework.stereotype.Service;
+
+@Service
+class DepartmentsService {
     public boolean IsMultiSelection;
     public int SelectedDepartment;
     public List<Department> DepartmentsList = new ArrayList<>();
@@ -28,7 +17,7 @@ class Departments {
     /**
      * Constructs a new Departments instance.
      */
-    public Departments() {
+    public DepartmentsService() {
         clear();
         IsMultiSelection = true;
     }
