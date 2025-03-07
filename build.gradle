@@ -18,9 +18,17 @@ repositories {
 }
 
 dependencies {
+	// EmailService dependency 
+	implementation 'com.sun.mail:javax.mail:1.6.2'  
+	// LoggingService dependency 
+	compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// for thymeleaf HTML templates
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-devtools'
+
+	// Ethos SDK 
 	implementation 'com.ellucian.ethos.integration.sdk:integration-sdk-java:1.0.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
