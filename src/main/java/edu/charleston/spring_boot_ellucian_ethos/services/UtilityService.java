@@ -11,16 +11,6 @@ import java.util.UUID;
 
 public class UtilityService {
 
-    public enum CourseLevelCodes {
-        GRAD, UNDERGRAD
-    }
-
-    public enum DropDowns {
-        BonusRequestTypes, BonusRequestSources, BonusRequestReasons, SalaryChangeTypes,
-        Months, Years, States, LawfulPresenceDocs, YesNo, EhhpClinicalSubject,
-        EhhpClinicalLevel, EhhpClinicalPracticeTerm
-    }
-
     public static String generateUniqueKey() {
         UUID uuid = UUID.randomUUID();
         long timestamp = System.currentTimeMillis();
