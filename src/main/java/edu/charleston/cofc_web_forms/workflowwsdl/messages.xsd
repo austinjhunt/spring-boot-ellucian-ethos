@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:messages="urn:sungardhe:workflow:ws:messages:1.1" elementFormDefault="qualified" targetNamespace="urn:sungardhe:workflow:ws:messages:1.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="completeWorkItem" type="messages:CompleteWorkItemRequest" />
+  <xsd:element name="completeWorkItemResponse" type="messages:CompleteWorkItemResponse" />
+  <xsd:element name="releaseWorkItem" type="messages:ReleaseWorkItemRequest" />
+  <xsd:element name="releaseWorkItemResponse" type="messages:ReleaseWorkItemResponse" />
+  <xsd:element name="setWorkItemContext" type="messages:SetWorkItemContextRequest" />
+  <xsd:element name="setWorkItemContextResponse" type="messages:SetWorkItemContextResponse" />
+  <xsd:element name="getWorkItemContext" type="messages:GetWorkItemContextRequest" />
+  <xsd:element name="getWorkItemContextResponse" type="messages:GetWorkItemContextResponse" />
+  <xsd:element name="postExternalEvent" type="messages:PostExternalEventRequest" />
+  <xsd:element name="postExternalEventResponse" type="messages:PostExternalEventResponse" />
+  <xsd:element name="createUser" type="messages:CreateUserRequest" />
+  <xsd:element name="createUserResponse" type="messages:CreateUserResponse" />
+  <xsd:element name="updateUserAttributes" type="messages:UpdateUserAttributesRequest" />
+  <xsd:element name="updateUserAttributesResponse" type="messages:UpdateUserAttributesResponse" />
+  <xsd:element name="getUserAttributes" type="messages:GetUserAttributesRequest" />
+  <xsd:element name="getUserAttributesResponse" type="messages:GetUserAttributesResponse" />
+  <xsd:element name="updateUserAuthenticationRequest" type="messages:UpdateUserAuthenticationRequest" />
+  <xsd:element name="updateUserAuthenticationResponse" type="messages:UpdateUserAuthenticationResponse" />
+  <xsd:element name="deleteUser" type="messages:DeleteUserRequest" />
+  <xsd:element name="deleteUserResponse" type="messages:DeleteUserResponse" />
+  <xsd:element name="addRoleAssignmentForUser" type="messages:AddRoleAssignmentForUserRequest" />
+  <xsd:element name="addRoleAssignmentForUserResponse" type="messages:AddRoleAssignmentForUserResponse" />
+  <xsd:element name="findUsersWhoAreExternallyAuthenticated" type="messages:FindUsersWhoAreExternallyAuthenticatedRequest" />
+  <xsd:element name="findUsersWhoAreExternallyAuthenticatedResponse" type="messages:FindUsersWhoAreExternallyAuthenticatedResponse" />
+  <xsd:element name="findUserByExternalID" type="messages:FindUserByExternalIDRequest" />
+  <xsd:element name="findUserByExternalIDResponse" type="messages:FindUserByExternalIDResponse" />
+  <xsd:element name="getExternalIDForUser" type="messages:GetExternalIDForUserRequest" />
+  <xsd:element name="getExternalIDForUserResponse" type="messages:GetExternalIDForUserResponse" />
+  <xsd:element name="NotAuthorizedFaultDetail" type="messages:NotAuthorizedFaultDetail" />
+  <xsd:element name="NotFoundFaultDetail" type="messages:NotFoundFaultDetail" />
+  <xsd:element name="CannotCompleteFaultDetail" type="messages:CannotCompleteFaultDetail" />
+  <xsd:element name="CannotReleaseFaultDetail" type="messages:CannotReleaseFaultDetail" />
+  <xsd:element name="ExternalEventValidationFault" type="messages:ExternalEventValidationFault" />
+  <xsd:element name="DuplicateExternalEventFault" type="messages:DuplicateExternalEventFault" />
+  <xsd:element name="ValidationFault" type="messages:ValidationFault" />
+  <xsd:complexType name="CompleteWorkItemRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="workItemPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CompleteWorkItemResponse">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="ReleaseWorkItemRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="workItemPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ReleaseWorkItemResponse">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="SetWorkItemContextRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="workItemPK" type="messages:PrimaryKey" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="contextParameter" type="messages:NameParameterValuePair" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SetWorkItemContextResponse" />
+  <xsd:complexType name="GetWorkItemContextRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="workItemPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetWorkItemContextResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="contextParameter" type="messages:NameParameterValuePair" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PostExternalEventRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="eventName" type="xsd:string" />
+      <xsd:element name="productTypeName" type="xsd:string" />
+      <xsd:element name="externalSource" type="xsd:string" />
+      <xsd:element name="externalID" type="xsd:string" />
+      <xsd:element name="externalDate" type="xsd:dateTime" />
+      <xsd:element minOccurs="0" name="workflowName" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="parameter" type="messages:NameParameterValuePair" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PostExternalEventResponse">
+    <xsd:sequence>
+      <xsd:element name="externalEventPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="NotAuthorizedFaultDetail">
+    <xsd:sequence>
+      <xsd:element name="principal" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="NotFoundFaultDetail">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="CannotCompleteFaultDetail">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="CannotReleaseFaultDetail">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="DuplicateExternalEventFault">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="ExternalEventValidationFault">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="ValidationFault">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="PrimaryKey">
+    <xsd:sequence>
+      <xsd:element name="key" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Authentication">
+    <xsd:sequence>
+      <xsd:element name="principal" type="xsd:string" />
+      <xsd:element name="credential" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="UserAttributes">
+    <xsd:sequence>
+      <xsd:element name="logonID" type="xsd:string" />
+      <xsd:element name="lastName" type="xsd:string" />
+      <xsd:element name="firstName" nillable="true" type="xsd:string" />
+      <xsd:element name="middleName" nillable="true" type="xsd:string" />
+      <xsd:element name="emailAddress" nillable="true" type="xsd:string" />
+      <xsd:element name="effectiveFrom" type="xsd:dateTime" />
+      <xsd:element name="effectiveTo" nillable="true" type="xsd:dateTime" />
+      <xsd:element name="enabled" type="xsd:boolean" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="UserAuthenticationMethod">
+    <xsd:sequence>
+      <xsd:choice minOccurs="1" maxOccurs="1">
+        <xsd:element name="password" type="xsd:string" />
+        <xsd:element name="externalID" type="xsd:string" />
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CreateUserRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="attributes" type="messages:UserAttributes" />
+      <xsd:element name="authenticationMethod" type="messages:UserAuthenticationMethod" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CreateUserResponse">
+    <xsd:sequence>
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="UpdateUserAttributesRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+      <xsd:element name="attributes" type="messages:UserAttributes" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="UpdateUserAttributesResponse">
+    <xsd:sequence>
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetUserAttributesRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetUserAttributesResponse">
+    <xsd:sequence>
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+      <xsd:element name="attributes" type="messages:UserAttributes" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="UpdateUserAuthenticationRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+      <xsd:element name="authenticationMethod" type="messages:UserAuthenticationMethod" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="UpdateUserAuthenticationResponse">
+    <xsd:sequence>
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DeleteUserRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="DeleteUserResponse">
+    <xsd:sequence />
+  </xsd:complexType>
+  <xsd:complexType name="AddRoleAssignmentForUserRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="roleAssignment" type="messages:RoleAssignment" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AddRoleAssignmentForUserResponse">
+    <xsd:sequence>
+      <xsd:element name="assignmentPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RoleAssignment">
+    <xsd:sequence>
+      <xsd:element name="userPK" type="messages:PrimaryKey" />
+      <xsd:element minOccurs="0" name="organizationName" type="xsd:string" />
+      <xsd:element name="roleName" type="xsd:string" />
+      <xsd:element name="startDate" type="xsd:dateTime" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="endDate" type="xsd:dateTime" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FindUsersWhoAreExternallyAuthenticatedRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FindUsersWhoAreExternallyAuthenticatedResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="userPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FindUserByExternalIDRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element name="externalID" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FindUserByExternalIDResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="userPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetExternalIDForUserRequest">
+    <xsd:sequence>
+      <xsd:element name="authentication" type="messages:Authentication" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="userPK" type="messages:PrimaryKey" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="GetExternalIDForUserResponse">
+    <xsd:sequence>
+      <xsd:element name="externalID" nillable="true" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="NumericValue">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="-{0,1}[\d]*\.{0,1}[\d]*" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="NameParameterValuePair">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string" />
+      <xsd:choice minOccurs="0" maxOccurs="1">
+        <xsd:element name="stringValue" type="xsd:string" />
+        <xsd:element name="booleanValue" type="xsd:boolean" />
+        <xsd:element name="dateValue" type="xsd:dateTime" />
+        <xsd:element name="numericValue" type="messages:NumericValue" />
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

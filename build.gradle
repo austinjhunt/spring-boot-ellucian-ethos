@@ -17,11 +17,16 @@ repositories {
 	mavenCentral()
 }
 
+
 dependencies {
 	// EmailService dependency 
 	implementation 'com.sun.mail:javax.mail:1.6.2'  
 	// LoggingService dependency 
 	compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+
+	// Workflow WSDL classes
+	implementation 'jakarta.xml.ws:jakarta.xml.ws-api:latest.release'
+
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// for thymeleaf HTML templates

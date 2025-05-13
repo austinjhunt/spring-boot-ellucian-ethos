@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wf="urn:sungardhe:workflow:ws:wsdl:1.1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:messages="urn:sungardhe:workflow:ws:messages:1.1" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:sungardhe:workflow:ws:wsdl:1.1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified">
+      <xsd:import schemaLocation="./messages.xsd" namespace="urn:sungardhe:workflow:ws:messages:1.1" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="CompleteWorkItemRequest">
+    <wsdl:part name="parameters" element="messages:completeWorkItem" />
+  </wsdl:message>
+  <wsdl:message name="CompleteWorkItemResponse">
+    <wsdl:part name="parameters" element="messages:completeWorkItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReleaseWorkItemRequest">
+    <wsdl:part name="parameters" element="messages:releaseWorkItem" />
+  </wsdl:message>
+  <wsdl:message name="ReleaseWorkItemResponse">
+    <wsdl:part name="parameters" element="messages:releaseWorkItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetWorkItemContextRequest">
+    <wsdl:part name="parameters" element="messages:setWorkItemContext" />
+  </wsdl:message>
+  <wsdl:message name="SetWorkItemContextResponse">
+    <wsdl:part name="parameters" element="messages:setWorkItemContextResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkItemContextRequest">
+    <wsdl:part name="parameters" element="messages:getWorkItemContext" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkItemContextResponse">
+    <wsdl:part name="parameters" element="messages:getWorkItemContextResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostExternalEventRequest">
+    <wsdl:part name="parameters" element="messages:postExternalEvent" />
+  </wsdl:message>
+  <wsdl:message name="PostExternalEventResponse">
+    <wsdl:part name="parameters" element="messages:postExternalEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserRequest">
+    <wsdl:part name="parameters" element="messages:createUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserResponse">
+    <wsdl:part name="parameters" element="messages:createUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAttributesRequest">
+    <wsdl:part name="parameters" element="messages:updateUserAttributes" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAttributesResponse">
+    <wsdl:part name="parameters" element="messages:updateUserAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAttributesRequest">
+    <wsdl:part name="parameters" element="messages:getUserAttributes" />
+  </wsdl:message>
+  <wsdl:message name="GetUserAttributesResponse">
+    <wsdl:part name="parameters" element="messages:getUserAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthenticationRequest">
+    <wsdl:part name="parameters" element="messages:updateUserAuthenticationRequest" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserAuthenticationResponse">
+    <wsdl:part name="parameters" element="messages:updateUserAuthenticationResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserRequest">
+    <wsdl:part name="parameters" element="messages:deleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserResponse">
+    <wsdl:part name="parameters" element="messages:deleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRoleAssignmentForUserRequest">
+    <wsdl:part name="parameters" element="messages:addRoleAssignmentForUser" />
+  </wsdl:message>
+  <wsdl:message name="AddRoleAssignmentForUserResponse">
+    <wsdl:part name="parameters" element="messages:addRoleAssignmentForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindUsersWhoAreExternallyAuthenticatedRequest">
+    <wsdl:part name="parameters" element="messages:findUsersWhoAreExternallyAuthenticated" />
+  </wsdl:message>
+  <wsdl:message name="FindUsersWhoAreExternallyAuthenticatedResponse">
+    <wsdl:part name="parameters" element="messages:findUsersWhoAreExternallyAuthenticatedResponse" />
+  </wsdl:message>
+  <wsdl:message name="FindUserByExternalIDRequest">
+    <wsdl:part name="parameters" element="messages:findUserByExternalID" />
+  </wsdl:message>
+  <wsdl:message name="FindUserByExternalIDResponse">
+    <wsdl:part name="parameters" element="messages:findUserByExternalIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExternalIDForUserRequest">
+    <wsdl:part name="parameters" element="messages:getExternalIDForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetExternalIDForUserResponse">
+    <wsdl:part name="parameters" element="messages:getExternalIDForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="NotAuthorizedFault">
+    <wsdl:part name="fault" element="messages:NotAuthorizedFaultDetail" />
+  </wsdl:message>
+  <wsdl:message name="NotFoundFault">
+    <wsdl:part name="fault" element="messages:NotFoundFaultDetail" />
+  </wsdl:message>
+  <wsdl:message name="CannotCompleteFault">
+    <wsdl:part name="fault" element="messages:CannotCompleteFaultDetail" />
+  </wsdl:message>
+  <wsdl:message name="CannotReleaseFault">
+    <wsdl:part name="fault" element="messages:CannotReleaseFaultDetail" />
+  </wsdl:message>
+  <wsdl:message name="ExternalEventValidationFault">
+    <wsdl:part name="fault" element="messages:ExternalEventValidationFault" />
+  </wsdl:message>
+  <wsdl:message name="DuplicateExternalEventFault">
+    <wsdl:part name="fault" element="messages:DuplicateExternalEventFault" />
+  </wsdl:message>
+  <wsdl:message name="ValidationFault">
+    <wsdl:part name="fault" element="messages:ValidationFault" />
+  </wsdl:message>
+  <wsdl:portType name="WorkflowWSPortType">
+    <wsdl:operation name="completeWorkItem">
+      <wsdl:input message="wf:CompleteWorkItemRequest" />
+      <wsdl:output message="wf:CompleteWorkItemResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+      <wsdl:fault name="CannotCompleteFault" message="wf:CannotCompleteFault" />
+    </wsdl:operation>
+    <wsdl:operation name="releaseWorkItem">
+      <wsdl:input message="wf:ReleaseWorkItemRequest" />
+      <wsdl:output message="wf:ReleaseWorkItemResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+      <wsdl:fault name="CannotReleaseFault" message="wf:CannotReleaseFault" />
+    </wsdl:operation>
+    <wsdl:operation name="setWorkItemContext">
+      <wsdl:input message="wf:SetWorkItemContextRequest" />
+      <wsdl:output message="wf:SetWorkItemContextResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getWorkItemContext">
+      <wsdl:input message="wf:GetWorkItemContextRequest" />
+      <wsdl:output message="wf:GetWorkItemContextResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+    </wsdl:operation>
+    <wsdl:operation name="postExternalEvent">
+      <wsdl:input message="wf:PostExternalEventRequest" />
+      <wsdl:output message="wf:PostExternalEventResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="DuplicateExternalEventFault" message="wf:DuplicateExternalEventFault" />
+      <wsdl:fault name="ExternalEventValidationFault" message="wf:ExternalEventValidationFault" />
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <wsdl:input message="wf:CreateUserRequest" />
+      <wsdl:output message="wf:CreateUserResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="ValidationFault" message="wf:ValidationFault" />
+    </wsdl:operation>
+    <wsdl:operation name="updateUserAttributes">
+      <wsdl:input message="wf:UpdateUserAttributesRequest" />
+      <wsdl:output message="wf:UpdateUserAttributesResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="ValidationFault" message="wf:ValidationFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserAttributes">
+      <wsdl:input message="wf:GetUserAttributesRequest" />
+      <wsdl:output message="wf:GetUserAttributesResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+    </wsdl:operation>
+    <wsdl:operation name="updateUserAuthentication">
+      <wsdl:input message="wf:UpdateUserAuthenticationRequest" />
+      <wsdl:output message="wf:UpdateUserAuthenticationResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="ValidationFault" message="wf:ValidationFault" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdl:input message="wf:DeleteUserRequest" />
+      <wsdl:output message="wf:DeleteUserResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+      <wsdl:fault name="ValidationFault" message="wf:ValidationFault" />
+    </wsdl:operation>
+    <wsdl:operation name="addRoleAssignmentForUser">
+      <wsdl:input message="wf:AddRoleAssignmentForUserRequest" />
+      <wsdl:output message="wf:AddRoleAssignmentForUserResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+      <wsdl:fault name="ValidationFault" message="wf:ValidationFault" />
+    </wsdl:operation>
+    <wsdl:operation name="findUsersWhoAreExternallyAuthenticated">
+      <wsdl:input message="wf:FindUsersWhoAreExternallyAuthenticatedRequest" />
+      <wsdl:output message="wf:FindUsersWhoAreExternallyAuthenticatedResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+    </wsdl:operation>
+    <wsdl:operation name="findUserByExternalID">
+      <wsdl:input message="wf:FindUserByExternalIDRequest" />
+      <wsdl:output message="wf:FindUserByExternalIDResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+    </wsdl:operation>
+    <wsdl:operation name="getExternalIDForUser">
+      <wsdl:input message="wf:GetExternalIDForUserRequest" />
+      <wsdl:output message="wf:GetExternalIDForUserResponse" />
+      <wsdl:fault name="NotAuthorizedFault" message="wf:NotAuthorizedFault" />
+      <wsdl:fault name="NotFoundFault" message="wf:NotFoundFault" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WorkflowWSSoapBinding" type="wf:WorkflowWSPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="completeWorkItem">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CannotCompleteFault">
+        <soap:fault use="literal" name="CannotCompleteFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="releaseWorkItem">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="CannotReleaseFault">
+        <soap:fault use="literal" name="CannotReleaseFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setWorkItemContext">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getWorkItemContext">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="postExternalEvent">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="DuplicateExternalEventFault">
+        <soap:fault use="literal" name="DuplicateExternalEventFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ExternalEventValidationFault">
+        <soap:fault use="literal" name="ExternalEventValidationFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFault">
+        <soap:fault use="literal" name="ValidationFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateUserAttributes">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFault">
+        <soap:fault use="literal" name="ValidationFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserAttributes">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateUserAuthentication">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFault">
+        <soap:fault use="literal" name="ValidationFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFault">
+        <soap:fault use="literal" name="ValidationFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addRoleAssignmentForUser">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ValidationFault">
+        <soap:fault use="literal" name="ValidationFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findUsersWhoAreExternallyAuthenticated">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findUserByExternalID">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getExternalIDForUser">
+      <soap:operation soapAction="" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="NotFoundFault">
+        <soap:fault use="literal" name="NotFoundFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotAuthorizedFault">
+        <soap:fault use="literal" name="NotAuthorizedFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WorkflowWS">
+    <wsdl:port name="WorkflowWS" binding="wf:WorkflowWSSoapBinding">
+      <soap:address location="https://workflow.cofc.edu:7778/wfprod/ws/services/WorkflowWS/v1_1" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
